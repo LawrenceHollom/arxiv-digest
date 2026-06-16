@@ -33,9 +33,6 @@ import re
 import sys
 import time
 import urllib.request
-import arxiv
-
-print(arxiv.__file__)
 
 from html.parser import HTMLParser
 from typing import Optional
