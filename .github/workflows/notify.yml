@@ -1,0 +1,35 @@
+name: Email on new report
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'reports/**.md'   # only trigger when a report file is pushed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # need previous commit to diff
+
+      - name: Get new report filename
+        id: report
+        run: |
+          FILE=$(git diff --name-only HEAD~1 HEAD | grep 'reports/' | head -n1)
+          echo "file=$FILE" >> $GITHUB_OUTPUT
+
+      - name: Send email via Resend
+        if: steps.report.outputs.file != ''
+        run: |
+          curl -s -X POST https://api.resend.com/emails \
+            -H "Authorization: Bearer ${{ secrets.RESEND_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "from": "arxiv-digest@yourdomain.com",
+              "to": "${{ secrets.NOTIFY_EMAIL }}",
+              "subject": "arXiv digest is ready",
+              "html": "<p>Your daily arXiv report has been pushed to GitHub.</p><p><a href=\"https://github.com/${{ github.repository }}/blob/main/${{ steps.report.outputs.file }}\">View the report</a></p>"
+            }'
