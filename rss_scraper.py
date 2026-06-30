@@ -15,4 +15,4 @@ with urllib.request.urlopen(url) as response:
             out_list.append(paper)
 
     # Print the dictionary
-    print(out_list)
+    pprint.pprint(out_list, indent=2)
