@@ -1,0 +1,13 @@
+Today's date is {date}, which should be in yyyy-mm-dd format. You should not need to directly access the internet at any stage of the process. If one of the commands fails, stop running immediately.
+
+1. Run the python script rss_scraper.py in the GitHub repo, which will produce a list of all of today's combinatorics arXiv papers as a pretty-printed list. The list will be long, so you might need to read it in chunks.
+2. Produce a shortlist of the five most significant papers of the day, bearing in mind the authors and what they claim to prove. Order the shortlist alphabetically by arXiv identifier.
+3. For each paper on the shortlist, summarize what it claims to prove and assess the importance of the breakthrough in context of the broader literature.
+4. Produce a report covering all five papers with their claims and significance in the form of a markdown file. Give the title and authors of the paper, include the abstract verbatim (up to formatting), and a few sentences of extra context. Try to match the format of previous days.
+5. Finally, give each paper a rating using the following scale, leaning on the strict and pessimistic side. It is likely that many papers will be given a C.
+  - C: a good paper, will likely be accepted into a good specialist joutnal.
+  - B: a strong paper, will likely be accepted into a leading specialist journal (e.g. combinatorica, JCTA/B) or a moderate generalist journal.
+  - A: a very impressive paper, will likely be accepted into a very strong generalist journal
+  - S: this is a major breakthrough; the paper will likely be accepted to the Annals of Mathematics.
+  - S+: this career-defining breakthrough will be discussed in non-specialist news sources.
+6. Push this file to the GitHub repository on the main branch (do not create a new branch!) as the file reports/{date}.md, with commit message "arXiv digest: {date}".
